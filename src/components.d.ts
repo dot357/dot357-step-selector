@@ -9,11 +9,12 @@ import { ImageProps } from "./components/hover-image/types";
 export { ImageProps } from "./components/hover-image/types";
 export namespace Components {
     interface HoverImage {
+        "backgroundColor"?: string;
         "main": ImageProps;
         "secondary": ImageProps;
         "size"?: {
-    width: string;
-    height: string;
+    width: number | string;
+    height: number | string;
   };
     }
 }
@@ -30,11 +31,12 @@ declare global {
 }
 declare namespace LocalJSX {
     interface HoverImage {
+        "backgroundColor"?: string;
         "main"?: ImageProps;
         "secondary"?: ImageProps;
         "size"?: {
-    width: string;
-    height: string;
+    width: number | string;
+    height: number | string;
   };
     }
     interface IntrinsicElements {
