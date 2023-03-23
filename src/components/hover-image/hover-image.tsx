@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State } from '@stencil/core';
+import { Component, Host, h, Prop } from '@stencil/core';
 import type { ImageProps } from './types';
 import DOMPurify from 'dompurify';
 
