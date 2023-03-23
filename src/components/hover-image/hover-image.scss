@@ -1,0 +1,43 @@
+:host {
+  display: block;
+}
+
+$image-size: 290px;
+$transition-delay: 0.2s;
+$transition-duration: 0.5s;
+
+.main {
+  height: $image-size + 10px;
+  width: $image-size + 10px;
+  overflow: hidden;
+}
+
+.image-wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  width: $image-size + 10px;
+  height: $image-size + 10px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: all $transition-duration ease;
+
+  img {
+    width: $image-size;
+    height: $image-size;
+    object-fit: contain;
+  }
+
+  .secondary {
+    position: absolute;
+  }
+}
+
+.main:hover .secondary {
+  transform: translateY(-100%);
+  transition-delay: $transition-delay;
+}
+.main:hover .image-wrapper:first-of-type {
+  transform: translateY(100%);
+}

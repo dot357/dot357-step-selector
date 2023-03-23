@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <title>Stencil Component Starter</title>
+
+    <script type="module" src="/build/shopiu.esm.js"></script>
+    <script nomodule src="/build/shopiu.js"></script>
+  </head>
+  <body>
+    <hover-image></hover-image>
+  </body>
+
+  <script>
+    (() => {
+      window.onload = () => {
+        const main = {
+          src: 'https://divezone.pl/17682-large_default/mares-xr-line-aluminum-buckle-black.jpg',
+          alt: 'First buckle image',
+        };
+        const secondary = {
+          src: 'https://divezone.pl/17686-large_default/mares-xr-line-stainless-buckle.jpg',
+          alt: 'Second buckle image',
+        };
+        const hoverImage = document.querySelector('hover-image');
+        if (hoverImage) {
+          hoverImage.main = main;
+          hoverImage.secondary = secondary;
+          hoverImage.size = {
+            width: '300px',
+            height: '300px',
+          };
+        }
+      };
+    })();
+  </script>
+</html>
