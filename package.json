@@ -1,6 +1,7 @@
 {
   "name": "shopiu",
   "version": "0.0.1",
+  "author": "Emre Can Eskimez <emrecaneskimez@outlook.com>",
   "description": "Shop UI is collection of usefull webcomponents for online stores",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
