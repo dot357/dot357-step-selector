@@ -9,25 +9,24 @@ import DOMPurify from 'dompurify';
 })
 export class HoverImage {
   @Prop() main: ImageProps;
-  @Prop() secondary: ImageProps;
-  @Prop() size?: {
-    width: number | string;
-    height: number | string;
-  };
+  @Prop() secondary?: ImageProps;
+  @Prop() width?: number = 300;
+  @Prop() height?: number = 300;
   @Prop() backgroundColor?: string = '#000';
   render() {
     const main = this.main;
     const secondary = this.secondary;
-    const size = this.size;
+    const width = this.width;
+    const height = this.height;
     const backgroundColor = DOMPurify.sanitize(this.backgroundColor);
 
     const outerSize = {
-      width: typeof size.width === 'string' ? size.width : `${size.width + 10}px`,
-      height: typeof size.height === 'string' ? size.height : `${size.height + 10}px`,
+      width: `${width}px`,
+      height: `${height}px`,
     };
     const innerSize = {
-      width: typeof size.width === 'string' ? size.width : `${size.width}px`,
-      height: typeof size.height === 'string' ? size.height : `${size.height}px`,
+      width: `${width - 10}px`,
+      height: `${height - 10}px`,
     };
 
     return (
@@ -52,8 +51,8 @@ export class HoverImage {
               style={{
                 ...innerSize,
               }}
-              src={main.src}
-              alt={main.alt}
+              src={main.src || ''}
+              alt={main.alt || ''}
               loading="lazy"
             />
           </div>
@@ -69,8 +68,8 @@ export class HoverImage {
                 style={{
                   ...innerSize,
                 }}
-                src={secondary.src}
-                alt={secondary.alt}
+                src={secondary.src ?? ''}
+                alt={secondary.alt ?? ''}
                 loading="lazy"
               />
             </div>
