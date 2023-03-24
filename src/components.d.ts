@@ -18,6 +18,10 @@ export namespace Components {
         "width"?: number;
     }
     interface StepBox {
+        "btnBacground"?: string;
+        "btnColor"?: string;
+        "btnHover"?: string;
+        "iconText"?: string;
     }
 }
 export interface StepBoxCustomEvent<T> extends CustomEvent<T> {
@@ -51,6 +55,10 @@ declare namespace LocalJSX {
         "width"?: number;
     }
     interface StepBox {
+        "btnBacground"?: string;
+        "btnColor"?: string;
+        "btnHover"?: string;
+        "iconText"?: string;
         "onStepBoxStateChange"?: (event: StepBoxCustomEvent<StepBoxState>) => void;
     }
     interface IntrinsicElements {

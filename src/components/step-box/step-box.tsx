@@ -1,4 +1,4 @@
-import { Component, Host, h, State, Element, Event, EventEmitter } from '@stencil/core';
+import { Component, Host, h, State, Element, Event, EventEmitter, Prop } from '@stencil/core';
 import { StepBoxState, checkImage } from './utility';
 @Component({
   tag: 'step-box',
@@ -6,6 +6,11 @@ import { StepBoxState, checkImage } from './utility';
   shadow: true,
 })
 export class StepBox {
+  @Prop() btnBacground?: string = '#0066ff';
+  @Prop() btnHover?: string = '#005ce6';
+  @Prop() btnColor?: string = 'white';
+  @Prop() iconText?: string = '?';
+
   @Element() el: HTMLElement;
   @State() stepBoxState: StepBoxState = StepBoxState.default;
   @State() hasImage: boolean = false;
@@ -17,6 +22,11 @@ export class StepBox {
     if (this.hasImage === true) {
       this.stepBoxState = StepBoxState.active;
     }
+
+    if (this.iconText.length > 1) {
+      this.iconText = this.iconText[0];
+    }
+    this.iconText = this.iconText.toUpperCase();
   }
 
   changeState() {
@@ -29,6 +39,13 @@ export class StepBox {
   }
 
   render() {
+    const iconText = this.iconText;
+    const btnOptions = {
+      background: this.btnBacground,
+      hover: this.btnHover,
+      color: this.btnColor,
+    };
+
     return (
       <Host>
         <div
@@ -41,7 +58,7 @@ export class StepBox {
               'image-wrapper': true,
               'default': this.stepBoxState === StepBoxState.default,
             }}
-            data-content="?"
+            data-content={iconText}
           >
             <slot name="image"></slot>
           </div>
@@ -52,7 +69,18 @@ export class StepBox {
             }}
           >
             <slot name="text-content"></slot>
-            <button onClick={() => this.changeState()}>{this.stepBoxState === StepBoxState.active ? 'Reset' : 'Select'}</button>
+            <button
+              type="button"
+              class="cst-btn"
+              style={{
+                '--btn-color': btnOptions.color,
+                '--btn-background': btnOptions.background,
+                '--btn-hover': btnOptions.hover,
+              }}
+              onClick={() => this.changeState()}
+            >
+              {this.stepBoxState === StepBoxState.active ? 'Reset' : 'Select'}
+            </button>
           </div>
         </div>
       </Host>

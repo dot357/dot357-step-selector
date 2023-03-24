@@ -20,6 +20,7 @@
   <script>
     (() => {
       const stepBox = document.querySelector('step-box');
+
       if (stepBox) {
         stepBox.addEventListener('stepBoxStateChange', (event, value) => {
           const { detail } = event;
