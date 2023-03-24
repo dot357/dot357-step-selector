@@ -6,7 +6,9 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ImageProps } from "./components/hover-image/types";
+import { StepBoxState } from "./components/step-box/utility";
 export { ImageProps } from "./components/hover-image/types";
+export { StepBoxState } from "./components/step-box/utility";
 export namespace Components {
     interface HoverImage {
         "backgroundColor"?: string;
@@ -15,6 +17,12 @@ export namespace Components {
         "secondary"?: ImageProps;
         "width"?: number;
     }
+    interface StepBox {
+    }
+}
+export interface StepBoxCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLStepBoxElement;
 }
 declare global {
     interface HTMLHoverImageElement extends Components.HoverImage, HTMLStencilElement {
@@ -23,8 +31,15 @@ declare global {
         prototype: HTMLHoverImageElement;
         new (): HTMLHoverImageElement;
     };
+    interface HTMLStepBoxElement extends Components.StepBox, HTMLStencilElement {
+    }
+    var HTMLStepBoxElement: {
+        prototype: HTMLStepBoxElement;
+        new (): HTMLStepBoxElement;
+    };
     interface HTMLElementTagNameMap {
         "hover-image": HTMLHoverImageElement;
+        "step-box": HTMLStepBoxElement;
     }
 }
 declare namespace LocalJSX {
@@ -35,8 +50,12 @@ declare namespace LocalJSX {
         "secondary"?: ImageProps;
         "width"?: number;
     }
+    interface StepBox {
+        "onStepBoxStateChange"?: (event: StepBoxCustomEvent<StepBoxState>) => void;
+    }
     interface IntrinsicElements {
         "hover-image": HoverImage;
+        "step-box": StepBox;
     }
 }
 export { LocalJSX as JSX };
@@ -44,6 +63,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "hover-image": LocalJSX.HoverImage & JSXBase.HTMLAttributes<HTMLHoverImageElement>;
+            "step-box": LocalJSX.StepBox & JSXBase.HTMLAttributes<HTMLStepBoxElement>;
         }
     }
 }

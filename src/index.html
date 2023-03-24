@@ -9,30 +9,45 @@
     <script nomodule src="/build/shopiu.js"></script>
   </head>
   <body>
-    <hover-image></hover-image>
+    <step-box>
+      <div slot="text-content">
+        <div style="font-weight: bold; font-size: 1.2rem">Title text</div>
+        <div>Title text</div>
+      </div>
+    </step-box>
   </body>
 
   <script>
     (() => {
-      window.onload = () => {
-        const main = {
-          src: 'https://divezone.pl/17682-large_default/mares-xr-line-aluminum-buckle-black.jpg',
-          alt: 'First buckle image',
-        };
-        // const secondary = {
-        //   src: 'https://divezone.pl/17686-large_default/mares-xr-line-stainless-buckle.jpg',
-        //   alt: 'Second buckle image',
-        // };
-        const hoverImage = document.querySelector('hover-image');
-        if (hoverImage) {
-          hoverImage.main = main;
-          // hoverImage.secondary = secondary;
-          // hoverImage.size = {
-          //   width: 350,
-          //   height: 350,
-          // };
-        }
-      };
+      const stepBox = document.querySelector('step-box');
+      if (stepBox) {
+        stepBox.addEventListener('stepBoxStateChange', (event, value) => {
+          const { detail } = event;
+          console.log('stepBoxStateChange', detail);
+          if (detail === 1) {
+            createImg();
+            stepBox.querySelector('[slot="text-content"]').innerHTML = `
+              <div style="font-weight: bold; font-size: 1.2rem">Product name</div>
+              <div>Product description</div>
+            `;
+          } else {
+            stepBox.querySelector('img').remove();
+            stepBox.querySelector('[slot="text-content"]').innerHTML = `
+              <div style="font-weight: bold; font-size: 1.2rem">Title text</div>
+              <div>Title text</div>
+            `;
+          }
+          // stepBox.appendChild()
+        });
+      }
+
+      function createImg() {
+        const img = document.createElement('img');
+        img.slot = 'image';
+        img.loading = 'lazy';
+        img.src = 'https://source.unsplash.com/random';
+        stepBox.appendChild(img);
+      }
     })();
   </script>
 </html>

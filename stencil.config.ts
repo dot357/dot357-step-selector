@@ -3,7 +3,11 @@ import { sass } from '@stencil/sass';
 
 export const config: Config = {
   namespace: 'shopiu',
-  plugins: [sass()],
+  plugins: [
+    sass({
+      injectGlobalPaths: ['src/globals/variables.scss', 'src/globals/mixins.scss', 'src/globals/reset.scss'],
+    }),
+  ],
   outputTargets: [
     {
       type: 'dist',
