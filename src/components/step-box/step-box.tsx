@@ -51,6 +51,7 @@ export class StepBox {
         <div
           class={{
             'step-box': true,
+            'default': true,
           }}
         >
           <div

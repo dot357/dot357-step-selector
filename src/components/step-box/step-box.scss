@@ -2,12 +2,16 @@
   display: block;
 }
 
+.step-box.default {
+  background-color: #f8f8f8;
+  border: 1px solid rgb(152, 152, 152);
+}
 .step-box {
   display: flex;
   height: 120px;
   padding: 10px;
   border-radius: 4px;
-  background-color: pink;
+
   gap: 1rem;
 
   max-width: 500px;
